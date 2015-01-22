@@ -1,0 +1,31 @@
+{
+    "name" : "olix/datatables-bootstrap-bundle",
+    "description" : "Symfony OlixDatatablesBootstrapBundle",
+    "type" : "symfony-bundle",
+    "homepage" : "https://github.com/sabinus52/OlixDatatablesBootstrapBundle",
+    "license" : "GPL-2.0",
+    "authors" : [{
+            "name" : "Olivier",
+            "email" : "sabinus52@gmail.com"
+        }
+    ],
+    "keywords" : [
+        "olix",
+        "symfony",
+        "admin",
+        "back office",
+        "bootstrap",
+        "jquery",
+        "datatables",
+        "grid",
+        "table"
+    ],
+    "require" : {
+        "symfony/framework-bundle" : "~2.3"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Olix\\DatatablesBootstrapBundle" : ""
+        }
+    }
+}
