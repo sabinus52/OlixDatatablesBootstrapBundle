@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+
+/**
+ * DATATABLES
+ */
+div.dataTables_length {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+div.dataTables_filter {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+div.dataTables_info {
+    margin-left: 10px;
+}
+div.dataTables_paginate {
+    margin-right: 10px;
+}
+table.dataTable thead th, table.dataTable thead td,
+table.dataTable tfoot th, table.dataTable tfoot td,
+.dataTables_wrapper.no-footer .dataTables_scrollBody,
+table.dataTable.no-footer {
+    border-bottom: 2px solid #DDD; 
+}
+table.dataTable .olix-actions {
+    white-space: nowrap;
+}
+table.dataTable .olix-actions a {
+    margin-left: 5px;
+}
