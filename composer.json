@@ -22,6 +22,7 @@
     ],
     "require" : {
         "symfony/framework-bundle" : "~2.3",
+        "sg/datatablesbundle" : "0.7",
         "friendsofsymfony/jsrouting-bundle": "@stable",
         "components/jquery": "1.11.*",
         "components/bootstrap": "3.2.*",
