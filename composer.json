@@ -21,7 +21,13 @@
         "table"
     ],
     "require" : {
-        "symfony/framework-bundle" : "~2.3"
+        "symfony/framework-bundle" : "~2.3",
+        "friendsofsymfony/jsrouting-bundle": "@stable",
+        "components/jquery": "1.11.*",
+        "components/bootstrap": "3.2.*",
+        "drmonty/datatables": "1.10.*",
+        "drmonty/datatables-plugins": "1.*",
+        "moment/moment": "2.8.*"
     },
     "autoload" : {
         "psr-4" : {
