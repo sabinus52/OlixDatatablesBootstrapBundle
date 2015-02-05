@@ -23,9 +23,17 @@ table.dataTable tfoot th, table.dataTable tfoot td,
 table.dataTable.no-footer {
     border-bottom: 2px solid #DDD; 
 }
+
+/* Colonnes actions */
 table.dataTable .olix-actions {
     white-space: nowrap;
+    text-align: right;
 }
 table.dataTable .olix-actions a {
     margin-left: 5px;
+}
+
+/* Actions multiselect */
+.dataTables_wrapper > p {
+    margin-left: 10px;
 }
