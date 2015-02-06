@@ -21,10 +21,9 @@
         "table"
     ],
     "require" : {
-        "symfony/framework-bundle" : "~2.3",
-        "sg/datatablesbundle" : "0.7",
+        "symfony/framework-bundle" : "~2.6",
+        "sg/datatablesbundle" : "dev-master",
         "friendsofsymfony/jsrouting-bundle": "@stable",
-        "components/jquery": "1.11.*",
         "components/bootstrap": "3.2.*",
         "drmonty/datatables": "1.10.*",
         "drmonty/datatables-plugins": "1.*",
@@ -32,7 +31,7 @@
     },
     "autoload" : {
         "psr-4" : {
-            "Olix\\DatatablesBootstrapBundle" : ""
+            "Olix\\DatatablesBootstrapBundle\\" : ""
         }
     }
 }
