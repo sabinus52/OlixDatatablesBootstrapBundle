@@ -1,4 +1,12 @@
 <?php
+/**
+ * Surchage de la classe pour la déclaration d'une DataTable
+ *
+ * @author Olivier <sabinus52@gmail.com>
+ *
+ * @package Olix
+ * @subpackage FormsExtBootstrapBundle
+ */
 
 namespace Olix\DatatablesBootstrapBundle\Datatable;
 
@@ -8,6 +16,11 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 
+/**
+ * Class AbstractDatatableView
+ *
+ * @package Sg\DatatablesBundle\Datatable\View\AbstractDatatableView
+ */
 abstract class AbstractDatatableView extends BaseAbstractDatatableView
 {
 

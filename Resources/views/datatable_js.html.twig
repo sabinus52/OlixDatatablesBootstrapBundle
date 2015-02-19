@@ -10,6 +10,30 @@
 
         var features = {
             {% include "SgDatatablesBundle:Datatable:features.html.twig" %}
+            
+            "stateSaveParams": function (settings, data) {
+                {% for column in view_columns %}
+                {% if column.items is defined %}
+                    //console.log("Save de {{ column.data }} : " + $("#filter_{{ column.data }}").val());
+                    data.{{ column.data }} = $("#filter_{{ column.data }}").val();
+                {% endif %}
+                {% endfor %}
+            },
+            "stateLoadParams": function (settings, data) {
+                var isFilter = false;
+                {% for column in view_columns %}
+                {% if column.items is defined %}
+                    //console.log("Load de {{ column.data }} : " + data.{{ column.data }});
+                    $("#filter_{{ column.data }}").val(data.{{ column.data }});
+                    if (data.{{ column.data }}) isFilter = true;
+                {% endif %}
+                {% endfor %}
+                if (isFilter) {
+                    $('.btn-filter').button('toggle');
+                    $('.olix-portlet-filter').collapse('toggle');
+                }
+            }
+            
         };
 
         var options = {
@@ -46,6 +70,14 @@
                         .draw();
                 });
             {% endif %}
+
+            $(".olix-portlet-filter select").on("change", function() {
+                //console.log($(this).attr('data-column')+' '+$(this).val());
+                oTable
+                    .column( $(this).attr('data-column') )
+                    .search( this.value )
+                    .draw();
+            });
 
             {% if view_multiselect %}
                 {% include "SgDatatablesBundle:Datatable:multiselect_actions.html.twig" with {'column': view_multiselect_column} %}

@@ -1,3 +1,20 @@
+<div class="olix-portlet-filter form-horizontal collapse">
+    {% for column in view_columns %}
+        {% if column.items is defined %}
+            <div class="col-sm-6">
+                <label class="col-md-4 control-label">{{ column.title }}</label>
+                <div class="col-md-8">
+                    <select id="filter_{{ column.data }}" data-column="{{ loop.index0 }}" class="form-control">
+                        <option></option>
+                        {% for id, value in column.items %}<option value="{{ id }}">{{ value }}</option>{% endfor %}
+                    </select>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <div class="clearfix"></div>
+</div>
+
 <table cellpadding="0" cellspacing="0" class="{{ view_style }}" border="0" id="{{ view_table_id }}" width="100%">
     <thead>
     </thead>

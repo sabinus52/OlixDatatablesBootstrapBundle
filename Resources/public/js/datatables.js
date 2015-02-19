@@ -25,3 +25,18 @@ $.extend( $.fn.dataTable.defaults, {
         }
     }
 } );
+
+
+!function ($) {
+    $(function() {
+
+        /**
+         * Affichage ou pas du volet du formulaire du filtre
+         */
+        $('.btn-filter').click(function() {
+            $(this).button('toggle');
+            $('.olix-portlet-filter').collapse('toggle');
+        });
+
+    })
+}(window.jQuery);
