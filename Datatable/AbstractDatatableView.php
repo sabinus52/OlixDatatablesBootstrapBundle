@@ -11,9 +11,15 @@
 namespace Olix\DatatablesBootstrapBundle\Datatable;
 
 use Sg\DatatablesBundle\Datatable\View\AbstractDatatableView as BaseAbstractDatatableView;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Bundle\TwigBundle\TwigEngine;
+use Twig_Environment;
 use Symfony\Component\Routing\RouterInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use Sg\DatatablesBundle\Datatable\View\Style;
+
 
 
 /**
@@ -35,18 +41,30 @@ abstract class AbstractDatatableView extends BaseAbstractDatatableView
     /**
      * Ctor.
      *
-     * @param TwigEngine          $templating           The templating service
-     * @param TranslatorInterface $translator           The translator service
-     * @param RouterInterface     $router               The router service
-     * @param array               $defaultLayoutOptions The default layout options
+     * @param AuthorizationCheckerInterface $authorizationChecker
+     * @param TokenStorageInterface         $securityToken
+     * @param Twig_Environment              $twig
+     * @param TranslatorInterface           $translator
+     * @param RouterInterface               $router
+     * @param EntityManagerInterface        $em
+     * @param array                         $defaultLayoutOptions
      */
-    public function __construct(TwigEngine $templating, TranslatorInterface $translator, RouterInterface $router, array $defaultLayoutOptions)
+    public function __construct(
+        AuthorizationCheckerInterface $authorizationChecker,
+        TokenStorageInterface $securityToken,
+        Twig_Environment $twig,
+        TranslatorInterface $translator,
+        RouterInterface $router,
+        EntityManagerInterface $em,
+        array $defaultLayoutOptions)
     {
-        parent::__construct($templating, $translator, $router, $defaultLayoutOptions);
+        parent::__construct($authorizationChecker, $securityToken, $twig, $translator, $router, $em, $defaultLayoutOptions);
         
-        $this->getOptions()->setPagingType('simple_numbers');
-        $this->setStyle(self::BOOTSTRAP_OLIX_STYLE);
-        $this->setUseIntegrationOptions(true);
+        $this->options->setOptions(array(
+            'class' => self::BOOTSTRAP_OLIX_STYLE,
+            'paging_type' => Style::SIMPLE_NUMBERS_PAGINATION,
+            'use_integration_options' => true,
+        ));
     }
 
 

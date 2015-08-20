@@ -22,7 +22,7 @@
     ],
     "require" : {
         "symfony/framework-bundle" : "~2.6",
-        "sg/datatablesbundle" : "dev-master",
+        "sg/datatablesbundle" : "0.7.*",
         "friendsofsymfony/jsrouting-bundle": "@stable",
         "components/bootstrap": "3.2.*",
         "drmonty/datatables": "1.10.*",

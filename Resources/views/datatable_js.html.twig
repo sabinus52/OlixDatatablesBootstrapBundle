@@ -40,6 +40,10 @@
             {% include "SgDatatablesBundle:Datatable:options.html.twig" %}
         };
 
+        var callbacks = {
+            {% include "SgDatatablesBundle:Datatable:callbacks.html.twig" %}
+        };
+
         var ajax = {
             {% include "SgDatatablesBundle:Datatable:ajax.html.twig" %}
         };
@@ -51,6 +55,7 @@
 
             $.extend(defaults, features);
             $.extend(defaults, options);
+            $.extend(defaults, callbacks);
             $.extend(defaults, ajax);
             $.extend(defaults, columns);
 
@@ -62,11 +67,36 @@
                 var oTable = $(selector).DataTable(defaults);
             }
 
-            {% if view_individual_filtering %}
-                $("tfoot input.individual_filtering").on("keyup change", function() {
+            {% if view_options.individualFiltering %}
+                {% if "head" == view_options.individualFilteringPosition %}
+                    $(selector + '_wrapper tfoot tr').insertAfter($(selector + '_wrapper thead tr'));
+                {% endif %}
+                {% if "both" == view_options.individualFilteringPosition %}
+                    $(selector + '_wrapper tfoot tr').clone().insertAfter($(selector + '_wrapper thead tr'));
+                {% endif %}
+                var daterange = $('input[name="daterange"]');
+                try {
+                    $(daterange).daterangepicker();
+                } catch (e) {
+                    console.log(e.message);
+                }
+                
+                {# "foot" position -> datatable_html.html.twig #}
+                
+                $(selector + "_wrapper").find("tr input.individual_filtering").on("keyup change", function() {
                     oTable
                         .column( $(this).parent().index()+':visible' )
                         .search( this.value )
+                        .draw();
+                });
+                
+                $("select.individual_filtering").on("keyup change", function(event) {
+                    var searchFieldId = $(event.currentTarget).data('filter-property-id');
+                    var searchValue = $(this).val();
+                    searchValue = searchValue ? searchValue.toString() : '';
+                    oTable
+                        .column(searchFieldId)
+                        .search(searchValue)
                         .draw();
                 });
             {% endif %}
