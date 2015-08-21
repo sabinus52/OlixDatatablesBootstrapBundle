@@ -74,12 +74,6 @@
                 {% if "both" == view_options.individualFilteringPosition %}
                     $(selector + '_wrapper tfoot tr').clone().insertAfter($(selector + '_wrapper thead tr'));
                 {% endif %}
-                var daterange = $('input[name="daterange"]');
-                try {
-                    $(daterange).daterangepicker();
-                } catch (e) {
-                    console.log(e.message);
-                }
                 
                 {# "foot" position -> datatable_html.html.twig #}
                 
