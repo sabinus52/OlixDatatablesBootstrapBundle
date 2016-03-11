@@ -4,7 +4,7 @@
             <div class="col-sm-6">
                 <label class="col-md-4 control-label">{{ column.title }}</label>
                 <div class="col-md-8">
-                    <select id="filter_{{ column.data }}" data-column="{{ loop.index0 }}" class="form-control">
+                    <select id="filter_{{ column.data|replace({'.': ''}) }}" data-column="{{ loop.index0 }}" class="form-control">
                         <option></option>
                         {% for id, value in column.items %}<option value="{{ id }}">{{ value }}</option>{% endfor %}
                     </select>

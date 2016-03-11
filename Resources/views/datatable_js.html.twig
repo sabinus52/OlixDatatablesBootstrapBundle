@@ -14,8 +14,8 @@
             "stateSaveParams": function (settings, data) {
                 {% for column in view_columns %}
                 {% if column.items is defined %}
-                    //console.log("Save de {{ column.data }} : " + $("#filter_{{ column.data }}").val());
-                    data.{{ column.data }} = $("#filter_{{ column.data }}").val();
+                    //console.log("Save de {{ column.data|replace({'.': ''}) }} : " + $("#filter_{{ column.data|replace({'.': ''}) }}").val());
+                    data.{{ column.data|replace({'.': ''}) }} = $("#filter_{{ column.data|replace({'.': ''}) }}").val();
                 {% endif %}
                 {% endfor %}
             },
@@ -23,9 +23,9 @@
                 var isFilter = false;
                 {% for column in view_columns %}
                 {% if column.items is defined %}
-                    //console.log("Load de {{ column.data }} : " + data.{{ column.data }});
-                    $("#filter_{{ column.data }}").val(data.{{ column.data }});
-                    if (data.{{ column.data }}) isFilter = true;
+                    //console.log("Load de {{ column.data|replace({'.': ''}) }} : " + data.{{ column.data|replace({'.': ''}) }});
+                    $("#filter_{{ column.data|replace({'.': ''}) }}").val(data.{{ column.data|replace({'.': ''}) }});
+                    if (data.{{ column.data|replace({'.': ''}) }}) isFilter = true;
                 {% endif %}
                 {% endfor %}
                 if (isFilter) {
