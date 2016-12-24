@@ -21,9 +21,9 @@
         "table"
     ],
     "require" : {
-        "symfony/framework-bundle" : "~2.6",
-        "sg/datatablesbundle" : "0.7.*",
-        "friendsofsymfony/jsrouting-bundle": "@stable",
+        "symfony/framework-bundle" : "~2.8",
+        "sg/datatablesbundle" : "0.13.*",
+        "friendsofsymfony/jsrouting-bundle": "1.*",
         "components/bootstrap": "3.2.*",
         "drmonty/datatables": "1.10.*",
         "drmonty/datatables-plugins": "1.*",

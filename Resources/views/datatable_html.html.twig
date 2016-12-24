@@ -1,5 +1,17 @@
 <div class="olix-portlet-filter form-horizontal collapse">
     {% for column in view_columns %}
+                        {% if column.searchable %}
+                        <div class="col-sm-6">
+                        <label class="col-md-4 control-label">{{ column.title }}</label>
+                <div class="col-md-8">
+                            {{ datatable_filter_render(datatable, column, loop.index0) }}
+                            </div>
+                            </div>
+                        {% endif %}
+                {% endfor %}
+    <div class="clearfix"></div>
+</div>
+{#    {% for column in view_columns %}
         {% if column.items is defined %}
             <div class="col-sm-6">
                 <label class="col-md-4 control-label">{{ column.title }}</label>
@@ -12,8 +24,7 @@
             </div>
         {% endif %}
     {% endfor %}
-    <div class="clearfix"></div>
-</div>
+#}
 
 <table cellpadding="0" cellspacing="0" class="{{ view_options.class }}" border="0" id="{{ view_table_id }}" width="100%">
     <thead>

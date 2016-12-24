@@ -1,0 +1,21 @@
+/**
+ * Callback lors de la sauvegarde des paramètres dataTables
+ *
+ * @author Olivier <sabinus52@gmail.com>
+ *
+ * @package Olix
+ * @subpackage DatatablesBootstrapBundle
+ */
+
+function (settings, data) {
+    {% if view_options.individualFiltering %}
+        {% for selectorId,column in view_columns %}
+            // Sauvegarde la valeur de la colonne si elle est recherchable
+            {% if column.searchable %}
+                var $idCol = $('#{{ tableId }}-sg-filter-{{ selectorId }}');
+                console.log("Save de {{ column.data|replace({'.': ''}) }} : " + $idCol.val());
+                data.{{ column.data|replace({'.': ''}) }} = $idCol.val();
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+}

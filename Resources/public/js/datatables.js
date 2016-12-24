@@ -1,7 +1,7 @@
 /**
  * Initialisation
  */
-$.extend( $.fn.dataTable.defaults, {
+/*$.extend( $.fn.dataTable.defaults, {
     language: {
         processing:     "Traitement en cours...",
         search:         "Rechercher&nbsp;:",
@@ -24,7 +24,7 @@ $.extend( $.fn.dataTable.defaults, {
             sortDescending: ": activer pour trier la colonne par ordre d&eacute;croissant"
         }
     }
-} );
+} );*/
 
 
 !function ($) {
@@ -35,7 +35,6 @@ $.extend( $.fn.dataTable.defaults, {
          */
         $('.btn-filter').click(function() {
             $(this).button('toggle');
-            $('.olix-portlet-filter').collapse('toggle');
         });
 
     })

@@ -1,0 +1,26 @@
+/**
+ * Callback lors de la restauration des paramètres dataTables
+ *
+ * @author Olivier <sabinus52@gmail.com>
+ *
+ * @package Olix
+ * @subpackage DatatablesBootstrapBundle
+ */
+
+function (settings, data) {
+
+    isFilter = false;
+
+    {% if view_options.individualFiltering %}
+        {% for selectorId,column in view_columns %}
+            // Charge la valeur de la colonne si elle est recherchable
+            {% if column.searchable %}
+                var $idCol = $('#{{ tableId }}-sg-filter-{{ selectorId }}');
+                console.log("Load de {{ column.data|replace({'.': ''}) }} : " + data.{{ column.data|replace({'.': ''}) }});
+                $idCol.val(data.{{ column.data|replace({'.': ''}) }});
+                if (data.{{ column.data|replace({'.': ''}) }}) isFilter = true;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+}

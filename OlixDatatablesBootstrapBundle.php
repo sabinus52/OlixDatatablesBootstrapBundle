@@ -3,21 +3,18 @@
 namespace Olix\DatatablesBootstrapBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Olix\DatatablesBootstrapBundle\DependencyInjection\Compiler\TemplatePass;
+
 
 class OlixDatatablesBootstrapBundle extends Bundle
 {
 
     /**
-     * Compilation pour le chargement des paramètres de ressources des layouts
-     *
-     * @see \Symfony\Component\HttpKernel\Bundle\Bundle::build()
+     * {@inheritDoc}
+     * @see \Symfony\Component\HttpKernel\Bundle\Bundle::getParent()
      */
-    public function build(ContainerBuilder $container)
+    public function getParent()
     {
-        parent::build($container);
-        $container->addCompilerPass(new TemplatePass());
+        return 'SgDatatablesBundle';
     }
 
 }

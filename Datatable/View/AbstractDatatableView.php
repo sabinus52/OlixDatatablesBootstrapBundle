@@ -5,16 +5,14 @@
  * @author Olivier <sabinus52@gmail.com>
  *
  * @package Olix
- * @subpackage FormsExtBootstrapBundle
+ * @subpackage DatatablesBootstrapBundle
  */
 
-namespace Olix\DatatablesBootstrapBundle\Datatable;
+namespace Olix\DatatablesBootstrapBundle\Datatable\View;
 
 use Sg\DatatablesBundle\Datatable\View\AbstractDatatableView as BaseAbstractDatatableView;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Bundle\TwigBundle\TwigEngine;
-use Twig_Environment;
 use Symfony\Component\Routing\RouterInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -43,29 +41,49 @@ abstract class AbstractDatatableView extends BaseAbstractDatatableView
      *
      * @param AuthorizationCheckerInterface $authorizationChecker
      * @param TokenStorageInterface         $securityToken
-     * @param Twig_Environment              $twig
      * @param TranslatorInterface           $translator
      * @param RouterInterface               $router
      * @param EntityManagerInterface        $em
-     * @param array                         $defaultLayoutOptions
      */
     public function __construct(
         AuthorizationCheckerInterface $authorizationChecker,
         TokenStorageInterface $securityToken,
-        Twig_Environment $twig,
         TranslatorInterface $translator,
         RouterInterface $router,
-        EntityManagerInterface $em,
-        array $defaultLayoutOptions)
+        EntityManagerInterface $em
+    )
     {
-        parent::__construct($authorizationChecker, $securityToken, $twig, $translator, $router, $em, $defaultLayoutOptions);
+        parent::__construct($authorizationChecker, $securityToken, $translator, $router, $em);
         
-        $this->options->setOptions(array(
+        $this->features->set(array(
+            'state_save' => true,
+        ));
+        $this->options->set(array(
             'class' => self::BOOTSTRAP_OLIX_STYLE,
             'paging_type' => Style::SIMPLE_NUMBERS_PAGINATION,
             'use_integration_options' => true,
+            'individual_filtering' => true,
+        ));
+        $this->callbacks->set(array(
+            'state_save_params' => array(
+                'template' => 'OlixDatatablesBootstrapBundle::state-save-params.js.twig',
+                'vars' => array(
+                    'tableId' => $this->getName(),
+                ),
+            ),
+            'state_load_params' => array(
+                'template' => 'OlixDatatablesBootstrapBundle::state-load-params.js.twig',
+                'vars' => array(
+                    'tableId' => $this->getName(),
+                ),
+            ),
+            'state_loaded' => array(
+                'template' => 'OlixDatatablesBootstrapBundle::state-loaded.js.twig',
+                'vars' => array(
+                    'tableId' => $this->getName(),
+                ),
+            ),
         ));
     }
-
 
 }

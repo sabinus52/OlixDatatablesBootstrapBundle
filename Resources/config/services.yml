@@ -2,3 +2,8 @@ services:
 #    olix_datatables_bootstrap.example:
 #        class: Olix\DatatablesBootstrapBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+#    sg_datatables.twig.extension:
+#        class: Olix\DatatablesBootstrapBundle\Twig\DatatableTwigExtension
+#        arguments: ['@translator']
+#        tags:
+#            - { name: twig.extension }

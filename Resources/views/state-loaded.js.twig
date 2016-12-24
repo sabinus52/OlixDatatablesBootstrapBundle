@@ -1,0 +1,26 @@
+/**
+ * Callback lors du chargement des paramètres dataTables
+ *
+ * @author Olivier <sabinus52@gmail.com>
+ *
+ * @package Olix
+ * @subpackage DatatablesBootstrapBundle
+ */
+
+function (settings, data) {
+
+    // Initialise la ligne correspondant au champs des filtres
+    $('#{{ tableId }} tfoot tr').attr('id', '{{ tableId }}_filtering');
+    $('#{{ tableId }}_filtering').collapse({
+        toggle: true
+    });
+
+    // Cache la ligne des filtres une fois que la transition soit faite
+    setTimeout(function(){
+        if (! isFilter)
+            $('#{{ tableId }}_filtering').collapse('hide');
+        else
+            $('.btn-filter').button('toggle');
+    }, 500);
+
+}
